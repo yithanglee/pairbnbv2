@@ -1,0 +1,31 @@
+<h1>Listing listings</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Price</th>
+    <th>Availability</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @listings.each do |listing| %>
+  <tr>
+    <td><%= listing.title %></td>
+    <td><%= listing.description %></td>
+    <td><%= listing.location %></td>
+    <td><%= listing.price %></td>
+    <td><%= listing.availability %></td>
+    <td><%= link_to 'Show', [listing.user, listing] %></td>
+    <td><%= link_to 'Edit', edit_user_listing_path(listing.user, listing) %></td>
+    <td><%= link_to 'Destroy', [listing.user, listing], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Listing', new_user_listing_path(params[:user_id]) %>
