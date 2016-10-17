@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 
   # GET users/1/listings
   def index
+  
     @listings = @user.listings
   end
 

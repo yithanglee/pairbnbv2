@@ -1,4 +1,4 @@
-<h1>Listing listings</h1>
+<h1>Room listings</h1>
 
 <table>
   <tr>
@@ -19,9 +19,15 @@
     <td><%= listing.location %></td>
     <td><%= listing.price %></td>
     <td><%= listing.availability %></td>
+<% if current_user.id.to_s == params["user_id"]%>
     <td><%= link_to 'Show', [listing.user, listing] %></td>
     <td><%= link_to 'Edit', edit_user_listing_path(listing.user, listing) %></td>
     <td><%= link_to 'Destroy', [listing.user, listing], :confirm => 'Are you sure?', :method => :delete %></td>
+    <% else %>
+    <td></td>
+    <td></td>
+    <td></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
