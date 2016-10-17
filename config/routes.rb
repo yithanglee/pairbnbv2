@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :users do
+
+get 'tags/:tag', to: 'listings#index', as: :tag
+
+
+  resources :users, only: [:index] do
     resources :listings
   end
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

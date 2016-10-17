@@ -3,9 +3,20 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   # GET users/1/listings
+  # def index
+  #   @listings = @user.listings
+  # end
+
+  
   def index
+    if params[:tag]
+    @listings = @user.listings.tagged_with(params[:tag])
+    else
     @listings = @user.listings
+    end
   end
+
+
 
   # GET users/1/listings/1
   def show
