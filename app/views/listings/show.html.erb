@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<div id="owl-carousel">
+ <% @listing.avatars.each do |x|%>
+<div class="item"><%= image_tag(x.url, size:"200")%></div>
+<% end %> 
+</div>
+
 
 <p>
   <b>Title:</b>
@@ -24,6 +30,8 @@
   <b>Availability:</b>
   <%= @listing.availability %>
 </p>
+
+
 
 
 <%= link_to 'Edit', edit_user_listing_path(@listing.user, @listing) %> |
