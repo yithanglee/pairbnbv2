@@ -7,6 +7,7 @@
     <th>Location</th>
     <th>Price</th>
     <th>Availability</th>
+    <th>Preview</th>>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,11 @@
     <td><%= listing.location %></td>
     <td><%= listing.price %></td>
     <td><%= listing.availability %></td>
+    <% if listing.avatars[0].nil?%>
+    <td> No Image </td>
+<% else %>
+  <td><%= image_tag(listing.avatars[0].url) %></td>
+    <% end %>
 <% if current_user.id.to_s == params["user_id"]%>
     <td><%= link_to 'Show', [listing.user, listing] %></td>
     <td><%= link_to 'Edit', edit_user_listing_path(listing.user, listing) %></td>
