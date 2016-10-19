@@ -23,7 +23,9 @@
     <% if listing.avatars[0].nil?%>
     <td> No Image </td>
 <% else %>
-  <td><%= image_tag(listing.avatars[0].url, size:"180") %></td>
+  <td>
+<a href="<%= listing.avatars[0].url%>" data-lightbox="listing"><%= image_tag(listing.avatars[0].url, size:"180") %></a>
+  </td>
     <% end %>
 <% if current_user.id.to_s == params["user_id"]%>
     <td><%= link_to 'Show', [listing.user, listing] %></td>

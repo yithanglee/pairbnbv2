@@ -30,3 +30,10 @@
 </div>
 
 </div>
+
+
+<div id="owl-carousel">
+ <% @listing.avatars.each do |x|%>
+<div class="item"><%= image_tag(x.url, size:"200")%></div>
+<% end %> 
+</div>

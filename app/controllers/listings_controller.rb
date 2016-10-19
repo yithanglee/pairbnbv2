@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
 
   # GET users/1/listings/1
   def show
+
   end
 
   # GET users/1/listings/new

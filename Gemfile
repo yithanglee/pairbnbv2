@@ -29,7 +29,10 @@ gem "omniauth-facebook"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'nested_scaffold'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+gem 'fog'
 gem 'owlcarousel-rails'
+gem 'lightbox2-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

@@ -15,9 +15,11 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'lightbox';
 
 #owl-carousel .item img{
   display: block;
   width: 80%;
   height: auto;
 }
+
