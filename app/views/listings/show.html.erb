@@ -57,8 +57,16 @@
   <b>Availability:</b>
   <%= @listing.availability %>
 </p>
-
 <% end %>
+
+<p>
+  <b>Tags:</b>
+  <% @listing.tags.each do |x| %>
+  <%= x.name %>
+  <% end %>
+</p>
+
+
 
 
 <%= link_to 'Edit', edit_user_listing_path(@listing.user, @listing) %> |

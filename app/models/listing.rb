@@ -1,5 +1,7 @@
 class Listing < ApplicationRecord
   belongs_to :user
-      # mount_uploader :avatar, AvatarUploader
+  has_many :tags, through: :listing_tags
+  has_many :listing_tags
+
     mount_uploaders :avatars, AvatarUploader
 end

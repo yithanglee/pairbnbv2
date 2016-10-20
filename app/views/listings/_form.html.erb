@@ -33,7 +33,9 @@
   </div>
 
 
-  <div>Pictures: <br><%= f.file_field :avatars, multiple: true %>  </div>
+  <div class="field"><span style="font-weight:bold">Pictures: </span><br><%= f.file_field :avatars, multiple: true %>  </div>
+
+  <div class="field" style="font-weight:bold">Your Tag goes here: <br><%= text_field(:tags, :label) %></div>
 
   <div class="actions">
     <%= f.submit %>

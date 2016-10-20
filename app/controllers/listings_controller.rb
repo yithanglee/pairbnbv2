@@ -36,6 +36,16 @@ class ListingsController < ApplicationController
   # PUT users/1/listings/1
   def update
     if @listing.update_attributes(listing_params)
+          @listing.listing_tags.destroy_all
+    tags = params["tags"]["label"].split(' ')
+    tags.each do |x|
+        if Tag.find_by(name:x).nil?
+          t = @listing.tags.create(name:x)
+        else
+          t = @listing.listing_tags.create(tag_id:Tag.find_by(name:x).id)
+        end
+      end
+
       redirect_to([@listing.user, @listing], notice: 'Listing was successfully updated.')
     else
       render action: 'edit'
@@ -61,6 +71,6 @@ class ListingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def listing_params
-      params.require(:listing).permit(:title, :description, :location, :price, :availability,  {avatars: []})
+      params.require(:listing).permit(:title, :description, :location, :price, :availability,  {avatars: []}, :name)
     end
 end

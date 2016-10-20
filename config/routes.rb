@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :listing_tags
+  resources :tags
   resources :users, except: [:destroy, :create, :new, :edit, :update, :show] do
     resources :listings
   end

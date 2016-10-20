@@ -1,6 +1,10 @@
 class StaticpagesController < ApplicationController
   def home
-  	@user = current_user.id
+  	if signed_in?
+  		@user = current_user.id
+  	else
+  	
+  end
   end
 
   def help
