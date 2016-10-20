@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :listings do
+    resources :reservations do
+    end
+  end
+
   resources :listing_tags
   resources :tags
   resources :users, except: [:destroy, :create, :new, :edit, :update, :show] do

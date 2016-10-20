@@ -1,0 +1,10 @@
+<h1>Reservations#new</h1>
+<p>Find me in app/views/reservations/new.html.erb</p>
+
+<%= form_tag(@url, method:"post") do %>
+
+Checkin	<%= date_select(:q, :checkin, :order => [:day, :month, :year]) %>
+Checkout	<%= date_select(:q, :checkout, :order => [:day, :month, :year]) %>
+  <%= hidden_field_tag(@listing.id) %><br><br>
+  <%= submit_tag("Reserve") %>
+<% end %>

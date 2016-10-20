@@ -8,7 +8,7 @@
   </head>
   <%= link_to 'Home', root_url %>
 <% if signed_in? %>
-  <%= link_to 'Your Listing', user_listings_url(@user) %> 
+  <%= link_to 'Your Listing', user_listings_url(current_user.id) %> 
   <%if current_user.avatars[0].nil? == false%>
   <%= image_tag(current_user.avatars[0].url, size:"80")%>
     <%end%>
@@ -26,7 +26,8 @@
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
-
+<div class="container-fluid">
     <%= yield %>
+    </div>
   </body>
 </html>
