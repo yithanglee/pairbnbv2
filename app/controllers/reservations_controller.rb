@@ -25,19 +25,11 @@ class ReservationsController < ApplicationController
     @checkout = Date.new(y,m,d)
 
     @listing = Listing.find(params["listing_id"])
+    @nights = @listing.reservations.create(checkin:@checkin, listing_id:@listing.id, user_id:current_user.id)
 
-for i in @checkin...@checkout do @listing.reservations.create(checkin:i, listing_id:@listing.id, user_id:current_user.id) end
+for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
    
-   byebug
-
-
-   
-    
- 
-
-
- 
-    
+    redirect_to listing_reservation_path(@listing.id, @nights.id)   
   end
 
 
@@ -48,6 +40,8 @@ for i in @checkin...@checkout do @listing.reservations.create(checkin:i, listing
 
   # GET users/1/listings/1
   def show
+    @booking = Reservation.find(params["id"]) 
+    @nights =  @booking.reservation_dates
   end
   # PUT users/1/listings/1
   def update

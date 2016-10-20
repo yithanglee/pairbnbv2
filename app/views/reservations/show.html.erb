@@ -1,2 +1,19 @@
 <h1>Reservations#show</h1>
 <p>Find me in app/views/reservations/show.html.erb</p>
+
+
+
+<table class="table">
+	<tr>
+		<th>Dates</th>
+
+	</tr>
+
+<% @nights.each do |x|%>
+	<tr>
+
+		<td><%= x.staying_dates %></td>
+
+	</tr>
+<% end %>
+</table>
