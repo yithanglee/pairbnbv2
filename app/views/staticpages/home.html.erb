@@ -15,7 +15,11 @@
 <tr>
 
 	<td><%= x.title %></td>
+	<% if x.avatars[0].nil? %>
+	<td>No image preview  </td>
+	<% else %>
 	<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
+	<% end %>
 	<td></td>
 	<td><%= link_to 'book this', user_listing_path(x.user.id, x.id)%></td>
 	<td></td>

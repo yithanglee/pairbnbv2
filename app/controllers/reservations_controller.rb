@@ -13,6 +13,7 @@ class ReservationsController < ApplicationController
 
   # POST users/1/listings
   def create
+
     y = params["q"]["checkin(1i)"].to_i
     m = params["q"]["checkin(2i)"].to_i 
     d = params["q"]["checkin(3i)"].to_i
@@ -22,15 +23,21 @@ class ReservationsController < ApplicationController
     m = params["q"]["checkout(2i)"].to_i 
     d = params["q"]["checkout(3i)"].to_i
     @checkout = Date.new(y,m,d)
-    
-    byebug
-    
+
     @listing = Listing.find(params["listing_id"])
 
-    @book = @listing.reservations.new(listing_id:@listing.id, user_id:current_user.id)
+for i in @checkin...@checkout do @listing.reservations.create(checkin:i, listing_id:@listing.id, user_id:current_user.id) end
+   
+   byebug
+
+
+   
+    
+ 
+
 
  
-   
+    
   end
 
 
