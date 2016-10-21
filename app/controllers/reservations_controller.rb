@@ -29,7 +29,7 @@ class ReservationsController < ApplicationController
 
 for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
 
-   @host = "damiennext706@gmail.com"
+   @host = @listing.user.email
 
     # ReservationMailer.notification_email(current_user.email, @host, @listing.id, @listing.reservations.last.id).deliver_later
     ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
