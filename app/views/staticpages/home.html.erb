@@ -1,30 +1,37 @@
-<h1>Staticpages#home</h1>
-<p>Find me in app/views/staticpages/home.html.erb</p>
+<div class="page-header">
+	<h1>Staticpages#home</h1>
+	<p>Find me in app/views/staticpages/home.html.erb</p>
+</div>
 
+<div class="panel panel-primary">
+  <div class="panel-heading">
+   <h3 class="panel-title">Available Listings</h3>
+ 	</div>
+ 	<div class="panel-body">
+		<table class="table">
+			<tr>
+				<th>Title</th>
+				<th>Preview</th>
+				<th>Availability</th>
+				<th>Action1</th>
+				<th>Action2</th>
+			</tr>
 
-<table class="table">
-	<tr>
-		<th>Title</th>
-		<th>Preview</th>
-		<th>Availability</th>
-		<th>Action1</th>
-		<th>Action2</th>
-	</tr>
+		<% @listings.each do |x| %>
+		<tr>
 
-<% @listings.each do |x| %>
-<tr>
+			<td><%= x.title %></td>
+			<% if x.avatars[0].nil? %>
+			<td>No image preview  </td>
+			<% else %>
+			<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
+			<% end %>
+			<td></td>
+			<td><%= link_to 'book this', user_listing_path(x.user.id, x.id)%></td>
+			<td></td>
 
-	<td><%= x.title %></td>
-	<% if x.avatars[0].nil? %>
-	<td>No image preview  </td>
-	<% else %>
-	<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
-	<% end %>
-	<td></td>
-	<td><%= link_to 'book this', user_listing_path(x.user.id, x.id)%></td>
-	<td></td>
-
-</tr>
-<% end %>
-
-</table>
+		</tr>
+		<% end %>
+		</table>
+		</div>
+	</div>

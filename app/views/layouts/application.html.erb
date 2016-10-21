@@ -7,31 +7,38 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid"></div>
-    <%= link_to 'Home', root_url %>
+  <div class="container">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+    <li><%= link_to 'Home', root_url %></li>
     <% if signed_in? %>
-    <%= link_to 'Your Listing', user_listings_url(current_user.id) %> 
+    <li><%= link_to 'Your Listing', user_listings_url(current_user.id) %></li>
+    </ul>
+        <ul class="nav navbar-nav navbar-right">
       <% if current_user.avatars[0].nil? == false%>
-    <%= image_tag(current_user.avatars[0].url, size:"80")%>
+    <li><div><%= image_tag(current_user.avatars[0].url, size:"60")%></div></li>
       <%end%>
     <% end %>
     <% if signed_in? %>
-    Signed in as: <%= current_user.email %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
+    <li><div style="padding-top:15px; padding-left:10px;">Signed in as: <%= current_user.email %></div></li>
+    <li><div style="padding-top:10px; padding-left:10px;"><%= button_to 'Sign out', sign_out_path, method: :delete %></div></li>
     <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
+    <li><%= link_to 'Sign in', sign_in_path %></li>
     <% end %>
+      </ul>
+    </div>
+  </div>
   </nav>
 
-  <body>
+  <body style="padding-left:20px; padding-right:20px">
 
     <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
-<div class="container-fluid">
+
     <%= yield %>
-    </div>
+
   </body>
 </html>
