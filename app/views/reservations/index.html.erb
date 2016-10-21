@@ -3,22 +3,6 @@
 
 
 
-<table class="table">
-	<tr>
-		<th>Listing Property</th>
-		<th>Dates</th>
-		<th>Action</th>
-	</tr>
-
-<% current_user.reservations.each do |x|%>
-	<tr>
-		<td><%= x.listing.title %></td>
-		<td><%= x.checkin %></td>
-		<td>View</td>
-	</tr>
-<% end %>
-</table>
-
 
 
 

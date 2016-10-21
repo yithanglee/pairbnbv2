@@ -28,6 +28,12 @@ class ReservationsController < ApplicationController
     @nights = @listing.reservations.create(checkin:@checkin, listing_id:@listing.id, user_id:current_user.id)
 
 for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
+
+   @host = "damiennext706@gmail.com"
+
+    # ReservationMailer.notification_email(current_user.email, @host, @listing.id, @listing.reservations.last.id).deliver_later
+    ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
+    # ReservationMailer to send a notification email after save
    
     redirect_to listing_reservation_path(@listing.id, @nights.id)   
   end
@@ -50,6 +56,7 @@ for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:
   # DELETE users/1/listings/1
   def destroy
   end
+
 
 
 end
