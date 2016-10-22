@@ -77,9 +77,12 @@
 
   <% reservations.each do |reservation| %>
     <div>
- 
+
+    <% if reservation.reservation.listing.id.to_s == params["id"] %>
       <%= reservation.reservation_id %>
        <%= reservation.reservation.user.email %>
+<% end %>
+
     </div>
   <% end %>
 <% end %>

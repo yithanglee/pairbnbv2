@@ -10,6 +10,8 @@ class ListingsController < ApplicationController
 
   # GET users/1/listings/1
   def show
+    
+    @listing = Listing.find(params["id"])
     @staying_dates = ReservationDate.all
   end
 

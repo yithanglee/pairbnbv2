@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :listing
-	has_many :reservation_dates
+	has_many :reservation_dates, dependent: :destroy
 
 
 	def start_time 

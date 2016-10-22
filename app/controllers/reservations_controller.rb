@@ -25,15 +25,15 @@ class ReservationsController < ApplicationController
     @checkout = Date.new(y,m,d)
 
     @listing = Listing.find(params["listing_id"])
+
+      # @listing.reservations.all
+
     @nights = @listing.reservations.create(checkin:@checkin, listing_id:@listing.id, user_id:current_user.id)
+    for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
 
-for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
+    # @host = @listing.user.email
 
-   @host = @listing.user.email
-
-    # ReservationMailer.notification_email(current_user.email, @host, @listing.id, @listing.reservations.last.id).deliver_later
-    ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
-    # ReservationMailer to send a notification email after save
+    # ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
    
     redirect_to listing_reservation_path(@listing.id, @nights.id)   
   end
