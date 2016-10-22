@@ -25,26 +25,31 @@ class ReservationsController < ApplicationController
     @checkout = Date.new(y,m,d)
 
     @listing = Listing.find(params["listing_id"])
-@booked_dates = []
+    @booked_dates = []
       @listing.reservations.each do |x|
         x.reservation_dates.each do |y|
           @booked_dates << y.staying_dates
         end
       end
-@query_dates = []
+    
+    @query_dates = []
       for i in @checkin...@checkout do @query_dates << i end
-byebug
-      if @booked_dates.include? @query_dates
-      redirect_to root_url
+
+   c = @query_dates.map {|x| @booked_dates.include? x}
+
+
+
+      if c.include? true
+      redirect_to user_listing_path(@listing.user.id, @listing.id) 
         else
-          
+
       @nights = @listing.reservations.create(checkin:@checkin, listing_id:@listing.id, user_id:current_user.id)
       for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
 
     # @host = @listing.user.email
 
     # ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
-        redirect_to listing_reservation_path(@listing.id, @nights.id) 
+        redirect_to user_listing_path(@listing.user.id, @listing.id) 
  
 
 
