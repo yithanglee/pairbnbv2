@@ -35,9 +35,7 @@ class ReservationsController < ApplicationController
     @query_dates = []
       for i in @checkin...@checkout do @query_dates << i end
 
-   c = @query_dates.map {|x| @booked_dates.include? x}
-
-
+      c = @query_dates.map {|x| @booked_dates.include? x}
 
       if c.include? true
       redirect_to user_listing_path(@listing.user.id, @listing.id) 

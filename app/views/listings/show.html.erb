@@ -35,18 +35,23 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row"><center>
   <p> <h1> <%= @listing.title %></h1> </p>
-  <p>Property owner: <%= @listing.user.email %></p>
+  <p>By: <%= @listing.user.email %></p>
+  </center>
   </div>
+
 </div>
 
 <div class="container">
   <div id="listing" class="row">
-    <div class="col-md-3"><b>Description:</b><%= @listing.description %></div>
-    <div class="col-md-3"><b>Location:</b><%= @listing.location %></div>
-    <div class="col-md-3"><b>Price:</b><%= @listing.price %></div>
-    <div class="col-md-3"><b>Availability:</b><%= @listing.availability %></div>
+  <center>
+   <b>Location:</b><span class="badge"><%= @listing.location %></span>
+   <b>Price:</b> <span class="badge"><%= @listing.price %></span>
+   <b>Availability:</b> <span class="badge"> <%= @listing.availability %></span>
+   </center>
+   <br>
+      <div class="well"><b>Description:</b><%= @listing.description %></div>
   </div>
 </div>
 
@@ -61,28 +66,41 @@
   </div>
 </div>
 
-
-<% if signed_in? %>
-<% if current_user.id == @listing.user.id %>
-<%= link_to 'Edit', edit_user_listing_path(@listing.user, @listing) %>  |<%= link_to 'Back', user_listings_path(@listing.user) %>
-<% else %>
-<%= link_to 'reserve this listing', new_listing_reservation_path(@listing.id) %>
-<% end %>
-<% else %>
-<%= link_to 'Sign In to reserve this listing', sign_in_path %>
-<% end %>
-
-<%= month_calendar events: @staying_dates do |date, reservations| %>
-  <%= date %>
-
-  <% reservations.each do |reservation| %>
-    <div>
-
-    <% if reservation.reservation.listing.id.to_s == params["id"] %>
-      <%= reservation.reservation_id %>
-       <%= reservation.reservation.user.email %>
-<% end %>
-
+<div class="container">
+  <div class="btn-group" role="group" aria-label="...">
+    <% if signed_in? %>
+    <% if current_user.id == @listing.user.id %>
+    <%= link_to 'Edit', edit_user_listing_path(@listing.user, @listing), :class => "btn btn-default" %> <%= link_to 'Back', user_listings_path(@listing.user), :class => "btn btn-default" %>
+    <% else %>
+    <%= link_to 'reserve this listing', new_listing_reservation_path(@listing.id), :class => "btn btn-success" %>
+    <% end %>
+    <% else %>
+    <%= link_to 'Sign In to reserve this listing', sign_in_path, :class => "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+     <h3 class="panel-title">Available Dates</h3>
     </div>
-  <% end %>
-<% end %>
+    <div class="panel-body">
+
+      <%= month_calendar events: @staying_dates do |date, reservations| %>
+        <%= date %>
+
+        <% reservations.each do |reservation| %>
+        <div>
+
+        <% if reservation.reservation.listing.id.to_s == params["id"] %>
+          <%= reservation.reservation_id %>
+           <%= reservation.reservation.user.email %>
+    <% end %>
+
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+   </div>
+ </div> 
