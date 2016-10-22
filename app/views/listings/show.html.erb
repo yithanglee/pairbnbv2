@@ -37,6 +37,7 @@
 <div class="container">
   <div class="row">
   <p> <h1> <%= @listing.title %></h1> </p>
+  <p>Property owner: <%= @listing.user.email %></p>
   </div>
 </div>
 
@@ -69,4 +70,16 @@
 <% end %>
 <% else %>
 <%= link_to 'Sign In to reserve this listing', sign_in_path %>
+<% end %>
+
+<%= month_calendar events: @staying_dates do |date, reservations| %>
+  <%= date %>
+
+  <% reservations.each do |reservation| %>
+    <div>
+ 
+      <%= reservation.reservation_id %>
+       <%= reservation.reservation.user.email %>
+    </div>
+  <% end %>
 <% end %>
