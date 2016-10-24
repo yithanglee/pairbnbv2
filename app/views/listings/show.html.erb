@@ -66,13 +66,21 @@
   </div>
 </div>
 
+
+
 <div class="container">
   <div class="btn-group" role="group" aria-label="...">
     <% if signed_in? %>
     <% if current_user.id == @listing.user.id %>
     <%= link_to 'Edit', edit_user_listing_path(@listing.user, @listing), :class => "btn btn-default" %> <%= link_to 'Back', user_listings_path(@listing.user), :class => "btn btn-default" %>
     <% else %>
-    <%= link_to 'reserve this listing', new_listing_reservation_path(@listing.id), :class => "btn btn-success" %>
+<%= form_tag(@url, method:"post") do %>
+Checkin <%= date_select(:q, :checkin, :order => [:day, :month, :year]) %>
+Checkout  <%= date_select(:q, :checkout, :order => [:day, :month, :year]) %>
+  <%= hidden_field_tag(@listing.id) %><br><br>
+  <%= submit_tag("Reserve") %>
+<% end %>
+
     <% end %>
     <% else %>
     <%= link_to 'Sign In to reserve this listing', sign_in_path, :class => "btn btn-default" %>
