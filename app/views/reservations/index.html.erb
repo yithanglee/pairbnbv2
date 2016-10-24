@@ -2,7 +2,24 @@
 <p>Find me in app/views/reservations/index.html.erb</p>
 
 
+<table class="table">
+<tr>
+	<th>Reservation ID</th>
+	<th>Checkin date</th>
+	<th>No. Of Nights</th>
+	<th>Email</th>
+	<th>Action 1</th>
+</tr>
+	<% @listing.reservations.each do |x| %>
+<tr>
 
+	<td><%= x.id%></td>
+	<td><%= x.checkin%></td>
+	<td><%= x.reservation_dates.count%></td>
+	<td><%= x.user.email%></td>
+	<td><%= link_to 'show', listing_reservation_path(@listing.id, x.id)%></td>
 
-
+</tr>
+	<% end %>
+</table>
 

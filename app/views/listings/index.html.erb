@@ -1,6 +1,6 @@
 <h1>Room listings</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Title</th>
     <th>Description</th>
@@ -42,4 +42,5 @@
 
 <br />
 
-<%= link_to 'New Listing', new_user_listing_path(params[:user_id]) %>
+
+<%= link_to 'New Listing', new_user_listing_path(current_user.id) %>

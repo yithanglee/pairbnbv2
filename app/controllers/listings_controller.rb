@@ -62,10 +62,24 @@ class ListingsController < ApplicationController
     redirect_to user_listings_url(@user)
   end
 
+  def search
+        @listings = Listing.search(params[:term], fields: ["title", "location"], mispellings: {below: 5})
+        if @listings.blank?
+          redirect_to listings_path, flash:{danger: "no successful search result"}
+        else
+          render :index
+        end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listings
+      if params[:user_id].nil?
+        @user = User.find(current_user.id)
+      else
       @user = User.find(params[:user_id])
+      end
     end
 
     def set_listing

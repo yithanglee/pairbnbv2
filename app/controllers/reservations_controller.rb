@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   # GET users/1/listings
   def index
+        @listing = Listing.find(params["listing_id"])
   end
 
 

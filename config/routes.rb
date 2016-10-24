@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get '/search', to: 'listings#search'
+
+  get 'payments/new', as: "new_payment"
+
+  post 'payments/create', as: "payments"
+
   resources :listings do
     resources :reservations do
     end
