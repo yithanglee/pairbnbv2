@@ -22,21 +22,26 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-gem "clearance"
-gem "figaro"
+
 gem "omniauth"
 gem "omniauth-facebook"
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'nested_scaffold'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'mini_magick'
+
 gem 'fog'
 gem 'owlcarousel-rails'
 gem 'lightbox2-rails'
+gem 'braintree'
+
+
+# important gems
+gem "clearance"
+gem "figaro"
+gem 'nested_scaffold'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
 gem "simple_calendar", "~> 2.0"
 gem 'sidekiq'
-gem 'braintree'
-gem 'searchkick'
+gem 'searchkick' # need to make sure the latest java is installed, else this wont work.
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
