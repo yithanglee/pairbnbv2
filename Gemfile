@@ -42,6 +42,7 @@ gem 'mini_magick'
 gem "simple_calendar", "~> 2.0"
 gem 'sidekiq'
 gem 'searchkick' # need to make sure the latest java is installed, else this wont work.
+gem "skylight"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
