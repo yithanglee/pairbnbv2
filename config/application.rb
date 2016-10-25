@@ -13,6 +13,6 @@ module Pairbnbv2
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :sidekiq
 
-Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
+
   end
 end
