@@ -70,7 +70,5 @@ Rails.application.configure do
   #mailer setting ends
 
 
-Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
-
 
 end
