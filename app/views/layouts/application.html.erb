@@ -7,6 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
   </head>
+
   <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,11 +34,13 @@
 
   <body style="padding-left:20px; padding-right:20px">
 
+   <div class="alert alert-success" role="alert"> 
     <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
+   </div> 
 
     <%= yield %>
 
