@@ -34,13 +34,16 @@
 
   <body style="padding-left:20px; padding-right:20px">
 
-   <div class="alert alert-success" role="alert"> 
+  
     <div id="flash">
+
       <% flash.each do |key, value| %>
+           <div class="alert alert-success" role="alert"> 
         <div class="flash <%= key %>"><%= value %></div>
+        </div>
       <% end %>
     </div>
-   </div> 
+
 
     <%= yield %>
 
