@@ -69,4 +69,8 @@ Rails.application.configure do
     config.action_mailer.default_options = {from: 'damiennext706@gmail.com'}
   #mailer setting ends
 
+
+Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
+
+
 end
