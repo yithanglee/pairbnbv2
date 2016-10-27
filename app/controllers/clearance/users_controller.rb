@@ -1,12 +1,12 @@
 class Clearance::UsersController < Clearance::BaseController
   if respond_to?(:before_action)
     before_action :redirect_signed_in_users, only: [:create, :new]
-    skip_before_action :require_login, only: [:create, :new], raise: false
-    skip_before_action :authorize, only: [:create, :new], raise: false
+    skip_before_action :require_login, only: [:create, :new, :edit, :update], raise: false
+    skip_before_action :authorize, only: [:create, :new, :edit, :update], raise: false
   else
     before_filter :redirect_signed_in_users, only: [:create, :new]
-    skip_before_filter :require_login, only: [:create, :new], raise: false
-    skip_before_filter :authorize, only: [:create, :new], raise: false
+    skip_before_filter :require_login, only: [:create, :new, :edit, :update], raise: false
+    skip_before_filter :authorize, only: [:create, :new, :edit, :update], raise: false
   end
 
   def new
@@ -24,6 +24,24 @@ class Clearance::UsersController < Clearance::BaseController
       render template: "users/new"
     end
   end
+
+  def edit
+        @user = User.find(params[:id])
+
+       render template: "users/edit"
+  end
+
+  def update
+        @user = User.find(params[:id])
+
+    if @user.update_attributes(revised_user_params)
+
+      redirect_to root_url
+    else
+      render template: "users/edit"
+    end
+  end
+
 
   private
 
@@ -48,17 +66,21 @@ class Clearance::UsersController < Clearance::BaseController
   def user_from_params
     email = user_params.delete(:email)
     password = user_params.delete(:password)
-  avatar = user_params.delete(:avatar)
+  # avatar = user_params.delete(:avatar)
   avatars = user_params.delete(:avatars)
     Clearance.configuration.user_model.new(user_params).tap do |user|
       user.email = email
       user.password = password
-         user.avatar = avatar
+         # user.avatar = avatar
       user.avatars = avatars
     end
   end
 
   def user_params
     params[Clearance.configuration.user_parameter] || Hash.new
+  end
+
+  def revised_user_params
+    params.require(:user).permit(:email, {avatars: []})
   end
 end

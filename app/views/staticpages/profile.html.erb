@@ -7,7 +7,7 @@
 
 
 
-<%= form_tag('/staticpages/update', method:'patch')%>
+<%= form_tag('/staticpages/update', method:'patch', :html => {:multipart => true})%>
   <div class="field"><span style="font-weight:bold">Pictures: </span>
   <br><%= file_field :avatars, multiple: true %>  </div>
   <%= submit_tag('Save')%>

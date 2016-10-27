@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Edit User Profile</div>
+  <div class="panel-body">
+  <div class="container">
+
+  	<%= form_for @user, :method => :PATCH  do |form| %>
+	  	<div class="row">
+			<div class="col-md-6">
+			<p><b>Profile Picture</b></p>
+			<%= image_tag(current_user.avatars[0].url, size:80) %>
+			<div>
+			<%= form.file_field :avatars, multiple: true %><br>	
+			</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="text-field">
+			<%= form.label :email %><br>
+			<%= form.text_field :email, type: 'email' %>
+			</div>
+
+	     </div>
+	    </div>
+	    <div class="row">
+	    	
+	    	<div class="submit-field"><br>
+	     	<div> <%= form.submit("Update", :class => "btn btn-default") %></div> 
+	     	</div>	
+	    </div>
+
+  	<% end %>
+
+	</div>
+	</div>
+</div>
