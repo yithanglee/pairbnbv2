@@ -78,6 +78,7 @@
 	 	</div>
 	 	<div class="panel-body">
 			<table class="table">
+			<% if signed_in? %>
 				<tr>
 					<th>Title</th>
 					<th>Preview</th>
@@ -85,13 +86,13 @@
 					<th>Action1</th>
 
 				</tr>
-<% if @listing_my.nil? %>
-<p>Create a new one instead?</p>
-<%= link_to 'New Listing', new_user_listing_path(current_user.id) %>
-<% else %>
+
+	<% if @listings_my.nil? %>
+	<p>Create a new one instead?</p>
+	<%= link_to 'New Listing', new_user_listing_path(current_user.id) %>
+	<% else %>
 			<% @listings_my.each do |x| %>
 			<tr>
-
 				<td><%= x.title %></td>
 				<% if x.avatars[0].nil? %>
 				<td>No image preview  </td>
@@ -102,7 +103,10 @@
 				<td><%= link_to 'Manage this', user_listing_path(x.user.id, x.id), :class=> "btn btn-default" %></td>
 			</tr>
 			<% end %>
-			<% end %>
+	<% end %>
+	<% else %>
+	<%= link_to 'Sign in', sign_in_path %>
+<% end %>
 			</table>
 			<!-- end for panel body -->
 			</div>

@@ -1,10 +1,12 @@
 class StaticpagesController < ApplicationController
   def home
-  		@listings = Listing.where.not(user_id: current_user.id)
-      @listings_my = current_user.listings
+
   	if signed_in?
   		@user = current_user.id
+      @listings = Listing.where.not(user_id: current_user.id)
+      @listings_my = current_user.listings
   	else
+      @listings = Listing.all
   	end
 
   end
