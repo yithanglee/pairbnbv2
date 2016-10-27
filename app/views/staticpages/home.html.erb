@@ -1,42 +1,115 @@
-<div class="page-header">
-	<h1>Staticpages#home</h1>
-	<p>Find me in app/views/staticpages/home.html.erb</p>
+<link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
+<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+
+<!--Video Section-->
+<section class="content-section video-section">
+  <div class="pattern-overlay">
+  <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=U3kSZPRUcBQ',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+        <h1>Brand</h1>  
+        <h3>Find your prefered accomodations for your camp, retreats, or holidays!</h3>
+	   </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Video Section Ends Here-->
+
+
+<div class="container">
+	<div class="row">
+	<center>
+	  <%= form_for Listing.new, method: :get, url: search_path, class: "navbar-form navbar-left" do |f| %>
+    <%= text_field_tag :term, params[:term], placeholder:"Where do you wanna go?" %>
+    <div>
+    <%= f.submit 'search', class: 'btn btn-primary' %>
+  	</div>
+  	<% end %>
+  	</center>
+  	<br>
+  	</div>
 </div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-   <h3 class="panel-title">Available Listings</h3>
- 	</div>
- 	<div class="panel-body">
-		<table class="table">
+
+<div class="container-fluid">
+<div class="row">
+	<div class="col-md-6">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	   <h3 class="panel-title">Available Listings</h3>
+	 	</div>
+	 	<div class="panel-body">
+			<table class="table">
+				<tr>
+					<th>Title</th>
+					<th>Preview</th>
+					<th>Host</th>
+					<th>Action1</th>
+
+				</tr>
+
+			<% @listings.each do |x| %>
 			<tr>
-				<th>Title</th>
-				<th>Preview</th>
-				<th>Host</th>
-				<th>Action1</th>
-				<th>Action2</th>
+
+				<td><%= x.title %></td>
+				<% if x.avatars[0].nil? %>
+				<td>No image preview  </td>
+				<% else %>
+				<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
+				<% end %>
+				<td><%= x.user.email%></td>
+				<td><%= link_to 'book this', user_listing_path(x.user.id, x.id), :class=> "btn btn-default" %></td>
 			</tr>
-
-		<% @listings.each do |x| %>
-		<tr>
-
-			<td><%= x.title %></td>
-			<% if x.avatars[0].nil? %>
-			<td>No image preview  </td>
-			<% else %>
-			<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
 			<% end %>
-			<td><%= x.user.email%></td>
-			<td><%= link_to 'book this', user_listing_path(x.user.id, x.id)%></td>
-			<td></td>
-
-		</tr>
-		<% end %>
-		</table>
+			</table>
+			<!-- end for panel body -->
+			</div>
+			<!-- end for panel primary -->
 		</div>
-	</div>
+		<!-- end for col 6 -->
+		</div>
 
-  <%= form_for Listing.new, method: :get, url: search_path, class: "navbar-form navbar-left" do |f| %>
-    <%= text_field_tag :term, params[:term], placeholder:"Where do you wanna go?" %>
-    <%= f.submit 'search', class: 'btn btn-primary' %>
-  <% end %>
+<div class="col-md-6">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	   <h3 class="panel-title">My Listings</h3>
+	 	</div>
+	 	<div class="panel-body">
+			<table class="table">
+				<tr>
+					<th>Title</th>
+					<th>Preview</th>
+					<th>Upcoming stays this month</th>
+					<th>Action1</th>
+
+				</tr>
+
+			<% @listings_my.each do |x| %>
+			<tr>
+
+				<td><%= x.title %></td>
+				<% if x.avatars[0].nil? %>
+				<td>No image preview  </td>
+				<% else %>
+				<td><%= image_tag(x.avatars[0].url, size:'100')%></td>
+				<% end %>
+				<td><%= x.reservations.count%></td>
+				<td><%= link_to 'Manage this', user_listing_path(x.user.id, x.id), :class=> "btn btn-default" %></td>
+			</tr>
+			<% end %>
+			</table>
+			<!-- end for panel body -->
+			</div>
+			<!-- end for panel primary -->
+		</div>
+		<!-- end for col 6 -->
+		</div>
+
+<!-- end for row -->
+</div>
+<!-- end for container-fluid -->
+</div>
+
+

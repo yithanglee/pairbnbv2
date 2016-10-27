@@ -32,11 +32,8 @@ $(document).ready(function() {
       itemsDesktopSmall : [979,3]
  
   });
+
+  $(".player").mb_YTPlayer();
  
 });
 
-
-lightbox.option({
-  'resizeDuration': 200,
-  'wrapAround': true
-})
