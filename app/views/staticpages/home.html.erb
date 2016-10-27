@@ -85,7 +85,10 @@
 					<th>Action1</th>
 
 				</tr>
-
+<% if @listing_my.nil? %>
+<p>Create a new one instead?</p>
+<%= link_to 'New Listing', new_user_listing_path(current_user.id) %>
+<% else %>
 			<% @listings_my.each do |x| %>
 			<tr>
 
@@ -98,6 +101,7 @@
 				<td><%= x.reservations.count%></td>
 				<td><%= link_to 'Manage this', user_listing_path(x.user.id, x.id), :class=> "btn btn-default" %></td>
 			</tr>
+			<% end %>
 			<% end %>
 			</table>
 			<!-- end for panel body -->
