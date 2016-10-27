@@ -45,7 +45,8 @@ class ReservationsController < ApplicationController
       @nights = @listing.reservations.create(checkin:@checkin, listing_id:@listing.id, user_id:current_user.id)
       for i in @checkin...@checkout do @nights.reservation_dates.create(staying_dates:i) end
 
-    # @host = @listing.user.email
+        @host = @listing.user.email
+         ReservationMailer.notification_email(current_user.email, @host, @listing.id, @listing.reservations.last.id).deliver_now
 
     # ReservationJob.perform_later(current_user.email, @host, @listing.id, @listing.reservations.last.id)
         redirect_to user_listing_path(@listing.user.id, @listing.id) 
