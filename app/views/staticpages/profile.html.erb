@@ -1,0 +1,13 @@
+<% if current_user.avatars[0].nil? %>
+<%= image_tag('no-profile-img', size:'80')%>
+<% else %>
+<%= image_tag(current_user.avatars[0].url, size:'80')%>
+<% end %>
+<h1><%= current_user.email%></h1>
+
+
+
+<%= form_tag('/staticpages/update', method:'patch')%>
+  <div class="field"><span style="font-weight:bold">Pictures: </span>
+  <br><%= file_field :avatars, multiple: true %>  </div>
+  <%= submit_tag('Save')%>

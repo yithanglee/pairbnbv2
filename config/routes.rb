@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
+  patch 'staticpages/update' => "staticpages#update"
+ 
+  get 'staticpages/profile'
+
   root 'staticpages#home'
 
   get 'staticpages/help'

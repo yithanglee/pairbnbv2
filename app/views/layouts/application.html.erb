@@ -17,12 +17,19 @@
     <li><%= link_to 'Your Listing', user_listings_url(current_user.id) %></li>
     </ul>
         <ul class="nav navbar-nav navbar-right">
-      <% if current_user.avatars[0].nil? == false%>
-    <li><div><%= image_tag(current_user.avatars[0].url, size:"60")%></div></li>
-      <%end%>
+
+    <li><div>
+<% if current_user.avatars[0].nil? %>
+<%= image_tag('no-profile-img', size:'60')%>
+<% else %>
+<%= image_tag(current_user.avatars[0].url, size:'60')%>
+<% end %>
+    </div></li>
+
     <% end %>
     <% if signed_in? %>
     <li><div style="padding-top:15px; padding-left:10px;">Signed in as: <%= current_user.email %></div></li>
+    <li><div style="padding-top:15px; padding-left:10px;"><%= link_to 'Profile', 'staticpages/profile' %></div></li>
     <li><div style="padding-top:10px; padding-left:10px;"><%= button_to 'Sign out', sign_out_path, method: :delete %></div></li>
     <% else %>
     <li><%= link_to 'Sign in', sign_in_path %></li>
